@@ -1,1 +1,3 @@
-*.cmp\n*.out\n*.tst
+*.cmp
+*.out
+*.tst

@@ -9,6 +9,13 @@
  *       b otherwise
  */
 
+/**
+ *  Mux(a=1,b=0,sel=0)  => OR(AND(a,NOT(b)), AND(sel,b))
+ *                      => OR(1, 0) => 1
+ *
+ */
+
+
 CHIP Mux {
     IN a, b, sel;
     OUT out;

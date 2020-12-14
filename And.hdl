@@ -9,6 +9,12 @@
  *       0 otherwise
  */
 
+/**
+ *  Not(Nand(1,1)) = Not(0) = 1
+ *  Not(Nand(1,0)) = Not(1) = 0
+ *  Not(Nand(0,0)) = Not(1) = 0
+ */
+
 CHIP And {
     IN a, b;
     OUT out;

@@ -9,6 +9,12 @@
  *       0 otherwise
  */
 
+ /**
+  * Or(0,0) => NOT(AND(1,1)) => 0
+  * Or(1,0) => NOT(AND(0,1)) => 1
+  * Or(1,1) => NOT(AND(0,0)) => 1
+  */
+
 CHIP Or {
     IN a, b;
     OUT out;

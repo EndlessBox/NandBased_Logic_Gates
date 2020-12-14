@@ -8,6 +8,10 @@
  * out = not in
  */
 
+/*
+ *  Nand(1,1) = Not(1 And 1) = Not(1) = 0
+ */
+
 CHIP Not {
     IN in;
     OUT out;

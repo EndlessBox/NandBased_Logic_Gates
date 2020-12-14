@@ -11,10 +11,37 @@
  *       d if sel == 11
  */
 
+ /*
+  * sel2 | sel1 | out |
+  *   0  |  0   |  a  | Not(Sel2) Not(sel1) a +
+  *   0  |  1   |  b  | Not(sel2) sel1 b +
+  *   1  |  0   |  c  | sel2 Not(sel1) c +
+  *   1  |  1   |  d  | sel2 sel1 d +
+  */
+
 CHIP Mux4Way16 {
     IN a[16], b[16], c[16], d[16], sel[2];
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    Not(in=sel[0], out=notSel1);
+    Not(in=sel[1], out=notSel2);
+
+    And(a=notSel1, b=notSel2, out=andNotSel1NotSel2);
+    Way16And1(a=a, b=andNotSel1NotSel2, out=Ns1Ns2a);
+
+    And(a=notSel2, b=sel[0], out=Ns2s1 );
+    Way16And1(a=b, b=Ns2s1, out=Ns2s1b);
+    
+    And(a=sel[1], b=notSel1, out=s2Ns1 );
+    Way16And1(a=c, b=s2Ns1, out=s2Ns1c);
+
+    And(a=sel[1], b=sel[0], out=s2s1 );
+    Way16And1(a=d, b=s2s1, out=s2s1d);
+    
+    Or16(a=Ns1Ns2a, b=Ns2s1b, out=aOrb);
+    Or16(a=s2Ns1c, b=s2s1d, out=cOrd);
+
+    Or16(a=aOrb, b=cOrd, out=out);
+    
 }
